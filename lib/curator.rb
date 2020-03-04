@@ -43,4 +43,14 @@ class Curator
       found_artists
     end
   end
+
+  def photographs_taken_by_artist_from(country)
+    photos_by_artist = photographs_by_artist
+    @artists.reduce([]) do |photos_from, artist|
+      if artist.country == country
+        photos_from += photos_by_artist[artist]
+      end
+      photos_from
+    end
+  end
 end
