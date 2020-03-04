@@ -3,11 +3,6 @@ require './lib/photograph'
 require './lib/artist'
 
 class PhotographTest < Minitest::Test
-  def setup
-
-
-  end
-
   def test_it_exists
     attributes = {
       id: "1",
@@ -34,7 +29,5 @@ class PhotographTest < Minitest::Test
     assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", photograph.name
     assert_equal "4", photograph.artist_id
     assert_equal "1954", photograph.year
-
-
   end
 end
