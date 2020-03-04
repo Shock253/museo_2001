@@ -20,18 +20,24 @@ class PhotographTest < Minitest::Test
     assert_instance_of Photograph, photograph
   end
 
-end
+  def test_it_has_attributes
+    attributes = {
+      id: "1",
+      name: "Rue Mouffetard, Paris (Boy with Bottles)",
+      artist_id: "4",
+      year: "1954"
+    }
 
-# pry(main)> attributes = {
-#   id: "1",
-#   name: "Rue Mouffetard, Paris (Boy with Bottles)",
-#   artist_id: "4",
-#   year: "1954"
-# }
-#
-# pry(main)> photograph = Photograph.new(attributes)
-# #=> #<Photograph:0x00007fc2d1050c80...>
-#
+    photograph = Photograph.new(attributes)
+
+    assert_equal "1", photograph.id
+    assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", photograph.name
+    assert_equal "4", photograph.artist_id
+    assert_equal "1954", photograph.year
+
+
+  end
+end
 # pry(main)> photograph.id
 # #=> "1"
 #
