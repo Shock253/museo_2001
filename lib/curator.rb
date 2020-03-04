@@ -20,4 +20,37 @@ class Curator
       artist.id == artist_id
     end
   end
+
+  def photographs_by_artist
+    @artists.reduce(Hash.new) do |completed_search_table, artist|
+      completed_search_table[artist] ||= []
+
+      @photographs.each do |photo|
+        if photo.artist_id == artist.id
+          completed_search_table[artist] << photo
+        end
+      end
+      completed_search_table
+    end
+  end
+
+  def artists_with_multiple_photographs
+    photos_by_artist = photographs_by_artist
+    @artists.reduce([]) do |found_artists, artist|
+      if photos_by_artist[artist].length > 1
+        found_artists << artist.name
+      end
+      found_artists
+    end
+  end
+
+  def photographs_taken_by_artist_from(country)
+    photos_by_artist = photographs_by_artist
+    @artists.reduce([]) do |photos_from, artist|
+      if artist.country == country
+        photos_from += photos_by_artist[artist]
+      end
+      photos_from
+    end
+  end
 end
