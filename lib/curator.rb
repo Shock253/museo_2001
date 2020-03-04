@@ -20,4 +20,17 @@ class Curator
       artist.id == artist_id
     end
   end
+
+  def photographs_by_artist
+    @artists.reduce(Hash.new) do |completed_search_table, artist|
+      completed_search_table[artist] ||= []
+
+      @photographs.each do |photo|
+        if photo.artist_id == artist.id
+          completed_search_table[artist] << photo
+        end
+      end
+      completed_search_table
+    end
+  end
 end
