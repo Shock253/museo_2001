@@ -33,4 +33,14 @@ class Curator
       completed_search_table
     end
   end
+
+  def artists_with_multiple_photographs
+    photos_by_artist = photographs_by_artist
+    @artists.reduce([]) do |found_artists, artist|
+      if photos_by_artist[artist].length > 1
+        found_artists << artist.name
+      end
+      found_artists
+    end
+  end
 end
