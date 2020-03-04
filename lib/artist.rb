@@ -13,4 +13,7 @@ class Artist
     @country = artist_params[:country]
   end
 
+  def age_at_death
+    @died.to_i - @born.to_i
+  end
 end
